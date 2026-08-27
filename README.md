@@ -36,16 +36,20 @@ kitty
 
 kitty apre la **shell di login presa da `/etc/passwd`**, che su Debian è `bash`.
 Se il prompt che vedi è `user@host:~$` invece di quello di Starship, non è un
-problema di kitty né di Starship: è `.zshrc` che non viene letto. Serve
-`chsh -s "$(command -v zsh)"` (poi logout/login) — vedi il
-[README di zsh](https://github.com/frpiana/zsh#su-debian). In alternativa, per
-una prova rapida, si può forzare la shell qui in `kitty.conf`:
+problema di kitty né di Starship: è il file di avvio della shell a non essere
+agganciato. Su Debian la shell resta bash e la config sta nel repo
+[bash](https://github.com/frpiana/bash) (Starship supporta bash nativamente,
+non serve `chsh`); il repo [zsh](https://github.com/frpiana/zsh) è l'alternativa
+per chi preferisce passare a zsh con `chsh -s "$(command -v zsh)"`.
+
+Volendo, kitty può anche forzare una shell diversa da quella di sistema:
 
 ```conf
 shell /usr/bin/zsh
 ```
 
-ma il `chsh` resta preferibile, perché vale anche per tmux, SSH e gli altri
+ma è meglio non usarlo per rimediare a una config non agganciata: maschera il
+problema solo dentro kitty, lasciandolo intatto in tmux, via SSH e negli altri
 terminali.
 
 Font: servono **JetBrainsMono Nerd Font** e **Symbols Nerd Font Mono** da
