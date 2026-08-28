@@ -34,6 +34,24 @@ git clone git@github.com:frpiana/kitty.git ~/.config/kitty
 kitty
 ```
 
+kitty apre la **shell di login presa da `/etc/passwd`**, che su Debian è `bash`.
+Se il prompt che vedi è `user@host:~$` invece di quello di Starship, non è un
+problema di kitty né di Starship: è il file di avvio della shell a non essere
+agganciato. Su Debian la shell resta bash e la config sta nel repo
+[bash](https://github.com/frpiana/bash) (Starship supporta bash nativamente,
+non serve `chsh`); il repo [zsh](https://github.com/frpiana/zsh) è l'alternativa
+per chi preferisce passare a zsh con `chsh -s "$(command -v zsh)"`.
+
+Volendo, kitty può anche forzare una shell diversa da quella di sistema:
+
+```conf
+shell /usr/bin/zsh
+```
+
+ma è meglio non usarlo per rimediare a una config non agganciata: maschera il
+problema solo dentro kitty, lasciandolo intatto in tmux, via SSH e negli altri
+terminali.
+
 Font: servono **JetBrainsMono Nerd Font** e **Symbols Nerd Font Mono** da
 [nerdfonts.com](https://www.nerdfonts.com) (vedi il README di starship,
 sezione Linux). Se legature o stylistic set non si applicano, verificare i
